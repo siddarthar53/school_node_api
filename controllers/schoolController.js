@@ -20,7 +20,7 @@ exports.addSchool = (req, res) => {
         return res.status(400).json({ message: "Invalid input data" });
     }
 
-    const query = 'INSERT INTO schools (name, address, latitude, longitude) VALUES (?, ?, ?, ?)';
+    const query = 'INSERT INTO school (name, address, latitude, longitude) VALUES (?, ?, ?, ?)';
     db.query(query, [name, address, latitude, longitude], (err) => {
         if (err) return res.status(500).json({ message: err.message });
         res.status(201).json({ message: "School added successfully" });
@@ -33,7 +33,7 @@ exports.listSchools = (req, res) => {
         return res.status(400).json({ message: "Invalid coordinates" });
     }
 
-    db.query('SELECT * FROM schools', (err, results) => {
+    db.query('SELECT * FROM school', (err, results) => {
         if (err) return res.status(500).json({ message: err.message });
 
         const userLat = parseFloat(lat);
